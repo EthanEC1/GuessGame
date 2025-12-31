@@ -10,19 +10,15 @@ game_history_guesses = []
 
 # Main function
 def main():
-    # Display the scores
     display_scores()
 
-    # Define player
     player = get_player_name()
 
-    # Append player to names
     game_history_names.append(player)
 
-    # Create flag
     is_true = True
 
-    # While flag is true
+    # While true
     while is_true:
         # Repeat/Start game
         is_true = repeat_game()
@@ -40,27 +36,19 @@ def read_history():
     # Read read lines individually to iterate through them
     current_line = file_history.readline()
 
-    # Read lines with text
+    # Read lines with text while current line is not blank
     while current_line != "":
-
-        # Remove new line character from player name
         current_player_name = current_line.rstrip("\n")
-
-        # Append player name to game_history_names
+        
         game_history_names.append(current_player_name)
 
-        # Width of 20 characters
         print(f"{current_player_name:<20}", end = "")
 
-        # Remove new line character from player score
         current_player_score = file_history.readline().rstrip("\n")
 
-        # Append player score to history guesses
         game_history_guesses.append(current_player_score)
 
-        # Width of 20 characters
         print(f"{current_player_score:>20}")
-
         current_line = file_history.readline()
 
     # Close history.txt    
@@ -84,29 +72,16 @@ def get_player_name():
 
 # Function that stores name and guess_value
 def store_name(current_name, guess_value):
-
-    # Open file history to append
     file_history = open("history.txt", "a")
-
-    # Write name
     file_history.write(f"\n{current_name}\n")
-
-    # Write guess value
     file_history.write(f"{guess_value}\n")
 
-    # Close
     file_history.close()
 
 # This function starts/repeats the game
 def repeat_game():
-
-    # Attempt accumulator
     att = 1
-
-    # Random number between 1 and 100
     random_num = random.randint(1, 100)
-
-    # Set boolean False
     correct = False
 
     # While not correct = False
@@ -130,14 +105,10 @@ def repeat_game():
 
         # Set correct to True if answer is correct
         correct = True
-
-        # Congratulate user
         print("Congratulations - you are right!")
 
-        # Append guesses to file   
         game_history_guesses.append(att)
 
-        # Reset attempt number to 1
         att = 1
 
         # Ask if user would like to play again
@@ -153,3 +124,4 @@ def repeat_game():
 # Call main()
 if __name__ == '__main__':
     main()
+
